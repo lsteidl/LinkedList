@@ -48,10 +48,11 @@ int remove_duplicates(node_t* head){
         dup = curr->next;
         j = i+1;
         printf("index %d = %d\n", i, curr->val);
-        while(dup->next != NULL){
+        while(dup != NULL){
             printf("    dup %d = %d\n", j, dup->val);
             if(dup->val == curr->val){
                 delete(head,j);
+                j--;
             }
             dup = dup->next; // increment 
             j++;
