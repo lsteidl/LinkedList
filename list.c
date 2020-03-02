@@ -43,7 +43,8 @@ void delete(node_t * head, int index){
         }
         curr->next = curr->next->next;
     }
-    printf("Deleted %d\n", index);
+    head->val--; // decrement length
+    printf("Deleted @%d\n", index);
 
 }
 // removes all nodes with specific value
@@ -77,7 +78,7 @@ int remove_duplicates(node_t* head){
         j = i+1; // define inner loop index
         printf("index %d = %d\n", i, curr->val);
         while(dup != NULL){
-            printf("    dup %d = %d\n", j, dup->val);
+            printf("    dup @%d = %d\n", j, dup->val);
             if(dup->val == curr->val){
                 delete(head,j);
                 count++;
@@ -87,7 +88,13 @@ int remove_duplicates(node_t* head){
             j++;
         }
         i++;
-        curr = curr->next;
+        if(curr->next != NULL){
+            curr = curr->next;  
+        }
+        else{
+            break;
+        }
+        
     }
     return count;
 }
