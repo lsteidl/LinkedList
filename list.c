@@ -71,12 +71,13 @@ int remove_duplicates(node_t* head){
     int count = 0; // count number of nodes removed
     int i = 1; // track index
     int j = 1; // track duplicate index
-    // iterate through list
+    // outer iterattion through list
     while(curr->next != NULL){
         // dup points to node after curr
         dup = curr->next;
         j = i+1; // define inner loop index
         printf("index %d = %d\n", i, curr->val);
+        // inner iteration
         while(dup != NULL){
             printf("    dup @%d = %d\n", j, dup->val);
             if(dup->val == curr->val){
@@ -89,9 +90,11 @@ int remove_duplicates(node_t* head){
         }
         i++;
         if(curr->next != NULL){
+            // safe to continue
             curr = curr->next;  
         }
         else{
+            // final element was removed
             break;
         }
         
