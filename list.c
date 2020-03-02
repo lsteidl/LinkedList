@@ -33,9 +33,11 @@ void delete(node_t * head, int index){
         i++;
     }
     curr->next = curr->next->next;
+    printf("Deleted %d\n", index);
 
 }
-remove_duplicates(node_t* head){
+int remove_duplicates(node_t* head){
+    
     node_t * curr = head; // allow iteration without destorying head*
     curr = curr->next; // skip first node
     node_t * dup = curr; // pointer for duplicate locating
@@ -43,11 +45,13 @@ remove_duplicates(node_t* head){
     int j = 1; // track duplicate index
     // iterate through list
     while(curr->next != NULL){
-        dup = curr;
-        j = i;
+        dup = curr->next;
+        j = i+1;
+        printf("index %d = %d\n", i, curr->val);
         while(dup->next != NULL){
+            printf("    dup %d = %d\n", j, dup->val);
             if(dup->val == curr->val){
-                delete(j);
+                delete(head,j);
             }
             dup = dup->next; // increment 
             j++;
@@ -55,6 +59,7 @@ remove_duplicates(node_t* head){
         i++;
         curr = curr->next;
     }
+    return 0;
 }
 // add node to end of list
 void add_node(node_t* head, int val){
