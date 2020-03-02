@@ -36,11 +36,28 @@ void delete(node_t * head, int index){
     printf("Deleted %d\n", index);
 
 }
+// removes all nodes with specific value
+int remove_all(node_t* head, int val){
+    node_t * curr = head; // allow iteration without destorying head*
+    curr = curr->next; // skip first node
+    int i = 1;// track index
+    int count = 0;
+    // iterate through list
+    while(curr->next != NULL){
+        if(curr->val == val){
+            delete(head,i);
+            count++;
+        }
+        i++;
+    }
+    return count;
+}
 int remove_duplicates(node_t* head){
     
     node_t * curr = head; // allow iteration without destorying head*
     curr = curr->next; // skip first node
     node_t * dup = curr; // pointer for duplicate locating
+    int count = 0; // count number of nodes removed
     int i = 1; // track index
     int j = 1; // track duplicate index
     // iterate through list
@@ -53,6 +70,7 @@ int remove_duplicates(node_t* head){
             printf("    dup %d = %d\n", j, dup->val);
             if(dup->val == curr->val){
                 delete(head,j);
+                count++;
                 j--; // prevent j index from incrementing later
             }
             dup = dup->next; // increment 
@@ -61,7 +79,7 @@ int remove_duplicates(node_t* head){
         i++;
         curr = curr->next;
     }
-    return 0;
+    return count;
 }
 // add node to end of list
 void add_node(node_t* head, int val){
@@ -104,7 +122,7 @@ int main(int argc, char *argv[])
     print_list(head);
     delete(head, 3);
     print_list(head);
-    remove_duplicates(head);
+    printf("Removed %d duplicates!\n", remove_duplicates(head));
 
     print_list(head);
 
