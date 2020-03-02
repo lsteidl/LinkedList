@@ -32,6 +32,10 @@ void delete(node_t * head, int index){
         curr = curr->next;
         i++;
     }
+    if(curr->next == NULL){
+        // removing last list item
+        
+    }
     curr->next = curr->next->next;
     printf("Deleted %d\n", index);
 
@@ -94,7 +98,7 @@ void add_node(node_t* head, int val){
     }
     // add new node
     curr->next = new_node;
-    printf("Added %d\n", val);
+    //printf("Added %d\n", val);
 }
 
 int main(int argc, char *argv[])
@@ -120,7 +124,7 @@ int main(int argc, char *argv[])
         add_node(head, index);
     }
     print_list(head);
-    delete(head, 3);
+    delete(head, 10);
     print_list(head);
     printf("Removed %d duplicates!\n", remove_duplicates(head));
 
