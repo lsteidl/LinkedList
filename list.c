@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
     delete(head, 3);
     print_list(head);
     remove_duplicates(head);
+
     print_list(head);
 
 
