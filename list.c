@@ -28,15 +28,21 @@ void print_list(node_t* head){
 void delete(node_t * head, int index){
     node_t * curr = head; // allow iteration without destorying head*
     int i = 1; // track current position
-    while(i < index){
-        curr = curr->next;
-        i++;
+        // check if index of last item
+    if(index == head->val){
+        printf("last item needs to be removed\n");
+        while(curr->next->next != NULL){
+            curr = curr->next;
+        }
+        curr->next = NULL;
     }
-    if(curr->next == NULL){
-        // removing last list item
-        
+    else{
+        while(i < index){
+           curr = curr->next;
+           i++;
+        }
+        curr->next = curr->next->next;
     }
-    curr->next = curr->next->next;
     printf("Deleted %d\n", index);
 
 }
@@ -98,6 +104,8 @@ void add_node(node_t* head, int val){
     }
     // add new node
     curr->next = new_node;
+    // update length in head
+    head->val++;
     //printf("Added %d\n", val);
 }
 
