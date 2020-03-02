@@ -45,14 +45,15 @@ int remove_duplicates(node_t* head){
     int j = 1; // track duplicate index
     // iterate through list
     while(curr->next != NULL){
+        // dup points to node after curr
         dup = curr->next;
-        j = i+1;
+        j = i+1; // define inner loop index
         printf("index %d = %d\n", i, curr->val);
         while(dup != NULL){
             printf("    dup %d = %d\n", j, dup->val);
             if(dup->val == curr->val){
                 delete(head,j);
-                j--;
+                j--; // prevent j index from incrementing later
             }
             dup = dup->next; // increment 
             j++;
