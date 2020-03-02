@@ -30,7 +30,7 @@ void delete(node_t * head, int index){
     int i = 1; // track current position
         // check if index of last item
     if(index == head->val){
-        printf("last item needs to be removed\n");
+        //printf("last item needs to be removed\n");
         while(curr->next->next != NULL){
             curr = curr->next;
         }
@@ -44,7 +44,7 @@ void delete(node_t * head, int index){
         curr->next = curr->next->next;
     }
     head->val--; // decrement length
-    printf("Deleted @%d\n", index);
+    //printf("Deleted @%d\n", index);
 
 }
 // removes all nodes with specific value
@@ -76,10 +76,10 @@ int remove_duplicates(node_t* head){
         // dup points to node after curr
         dup = curr->next;
         j = i+1; // define inner loop index
-        printf("index %d = %d\n", i, curr->val);
+       // printf("index %d = %d\n", i, curr->val);
         // inner iteration
         while(dup != NULL){
-            printf("    dup @%d = %d\n", j, dup->val);
+           // printf("    dup @%d = %d\n", j, dup->val);
             if(dup->val == curr->val){
                 delete(head,j);
                 count++;
@@ -100,6 +100,29 @@ int remove_duplicates(node_t* head){
         
     }
     return count;
+}
+//   1 -> 2 -> 3 -> 4 -> 5
+//   1 <- 2 -> 3 -> 4 -> 5
+//   d
+//        c
+//             t
+// reverse order of singly linked list
+void reverse(node_t* head){
+    node_t * curr = head; // allow iteration without destorying head*
+    curr = curr->next; // skip first node
+    node_t * dup = curr; // 
+    node_t * temp = curr; // temporary 
+    // advance pointer to current last node
+    while(curr->next->next != NULL){
+        dup = curr;
+        curr = curr->next;
+        temp = dup->next->next;
+        dup->next = dup;
+        //curr = curr->next;
+    }
+    
+
+
 }
 // add node to end of list
 void add_node(node_t* head, int val){
@@ -146,6 +169,8 @@ int main(int argc, char *argv[])
     print_list(head);
     printf("Removed %d duplicates!\n", remove_duplicates(head));
 
+    print_list(head);
+    reverse(head);
     print_list(head);
 
 
